@@ -5,14 +5,14 @@
 }
 
 .musicContainer {
-  height: 800px;
-  width: 1200px;
+  height: 797px;
+  width: 1280px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
 
   &__content {
-    width: 1120px;
+    width: 1200px;
     height: 100%;
     // background-color: #000;
     display: flex;
@@ -20,13 +20,13 @@
 
     &--album {
       width: 462px;
-      height: 700px;
+      height: 697px;
       background-color: #fcf;
     }
 
     &--musicList {
-      width: 658px;
-      height: 700px;
+      width: 738px;
+      height: 697px;
       background-color: #1a1a1a;
     }
 

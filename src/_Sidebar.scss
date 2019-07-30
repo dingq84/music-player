@@ -1,0 +1,50 @@
+.musicContainer__sidebar {
+  position: relative;
+
+  & img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__picture {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+  }
+
+  &__home {
+    top: 173.48px;
+    width: 36px;
+    height: 34.47px;
+  }
+
+  &__music {
+    top: 271.48px;
+    width: 32px;
+    height: 32px;
+  }
+
+  &__archive {
+    top: 366.48px;
+    width: 32px;
+    height: 33.52px;
+  }
+
+  &__search {
+    top: 660px;
+    width: 32px;
+    height: 32.2px;
+  }
+
+  &__setting {
+    top: 721px;
+    width: 34px;
+    height: 34px;
+  }
+}

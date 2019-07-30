@@ -1,0 +1,19 @@
+.musicContainer__content--player {
+  position: relative;
+
+  & img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &--volume {
+    left: 909px;
+  }
+
+  &--heart {
+    left: 1097px;
+    width: 24px;
+    height: 21.74px;
+  }
+}
