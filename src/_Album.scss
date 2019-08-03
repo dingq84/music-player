@@ -1,0 +1,107 @@
+.musicContainer__content--album {
+  background-color: #1a1a1a;
+  color: #fff;
+
+  &--title {
+    height: 221px;
+    // background-color: green;
+    padding: 75px 64px 49.26px 42px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    &--image {
+      width: 90px;
+      height: 90px;
+    }
+
+    &--text {
+      width: 448px;
+      height: 105px;
+    }
+  }
+
+  &--list {
+    height: 472px;
+    // background-color: yellow;
+
+    & img {
+      width: 14px;
+      height: 12.68px;
+      cursor: pointer;
+    }
+
+    &--name {
+      padding-left: 100px;
+      padding-right: 91px;
+      display: flex;
+      justify-content: center;
+      font-size: 14px;
+
+      &--title {
+        width: 361px;
+        height: 20px;
+      }
+
+      &--length {
+        // width: 52px;
+        width: 60px;
+        height: 20px;
+      }
+
+      &--heart {
+        width: 136px;
+        height: 20px;
+
+        & img {
+          display: block;
+          margin-left: auto;
+          margin-top: auto;
+          margin-bottom: auto;
+          vertical-align: top;
+        }
+      }
+    }
+
+    &--content {
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: 448px;
+
+      &--items {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 56px;
+
+        margin-right: 52px;
+
+        &--number {
+          width: 100px;
+          text-align: center;
+        }
+
+        &--title {
+          width: 361px;
+        }
+
+        &--length {
+          // width: 52px;
+          width: 60px;
+        }
+
+        &--lover {
+          width: 136px;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+
+          & img {
+            margin-left: 14px;
+          }
+        }
+      }
+    }
+  }
+}

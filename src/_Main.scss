@@ -2,10 +2,11 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  box-sizing: border-box;
 }
 
 .musicContainer {
-  height: 797px;
+  height: 800px;
   width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -18,21 +19,22 @@
     display: flex;
     flex-wrap: wrap;
 
-    &--album {
+    &--picture {
       width: 462px;
-      height: 697px;
+      height: 693px;
       background-color: #fcf;
     }
 
-    &--musicList {
+    &--album {
       width: 738px;
-      height: 697px;
+      height: 693px;
       background-color: #1a1a1a;
+      margin-bottom: 10px;
     }
 
     &--player {
       width: 100%;
-      height: 100px;
+      height: 97px;
       background-color: #772020;
     }
   }

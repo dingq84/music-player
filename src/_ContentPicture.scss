@@ -1,0 +1,20 @@
+.musicContainer__content--picture {
+  position: relative;
+  &--crossline {
+    width: 28px;
+    height: 28px;
+    // background-color: #fff;
+    position: absolute;
+    top: 60px;
+    right: 44px;
+    display: flex;
+    flex-wrap: wrap;
+
+    & div {
+      width: 11px;
+      height: 11px;
+      background-color: #fff;
+      margin: 1.5px;
+    }
+  }
+}
