@@ -5,6 +5,11 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    cursor: pointer;
+
+    &:hover {
+      filter: invert(0.5) sepia(1) saturate(0) hue-rotate(0deg);
+    }
   }
 
   &__picture {

@@ -1,23 +1,21 @@
 import React from 'react';
 
-import CoverMusic from './CoverMusic';
-
 import heart from './assets/images/heart-2.svg';
+import album from './assets/images/Ed_Sheeran_-_No._6_Collaborations_Project.png';
+import './_ContentAlbum.scss';
 
-import './_Album.scss';
-
-export default function ContentAlbum() {
+export default function ContentAlbum({ data, click }) {
 
   return (
     <>
       <div className="musicContainer__content--album--title">
         <div className="musicContainer__content--album--title--image">
-          this is picture
+          <img src={album} alt='album' />
         </div>
         <div className="musicContainer__content--album--title--text">
           <h6>2019</h6>
           <h1>No.6 Collaborations Project</h1>
-          <button>play</button>
+          <button onClick={click}>play</button>
         </div>
         <img
           src={heart}
@@ -43,7 +41,7 @@ export default function ContentAlbum() {
           </span>
         </div>
         <div className="musicContainer__content--album--list--content">
-          <CoverMusic />
+          {data}
         </div>
       </div>
     </>

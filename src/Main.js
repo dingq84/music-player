@@ -4,11 +4,12 @@ import ContentPicture from './ContentPicture';
 import ContentAlbum from './ContentAlbum';
 import ContentPlayer from './ContentPlayer';
 import Sidebar from './Sidebar';
+import useMusicData from './useMusicData';
 
-import albumPhoto from './assets/images/astist_photo.png';
 import './_Main.scss';
 
 export default function Main() {
+  const [currentMusic, initialSong, playerDOM, soundsList] = useMusicData();
 
   return (
     <div className="musicContainer">
@@ -23,15 +24,18 @@ export default function Main() {
           <ContentPicture />
         </div>
         <div className="musicContainer__content--album">
-          <ContentAlbum />
+          <ContentAlbum data={soundsList} click={initialSong} />
         </div>
         <div className="musicContainer__content--player">
-          <ContentPlayer />
+          <ContentPlayer
+            data={currentMusic}
+            playerDOM={playerDOM}
+          />
         </div>
       </div>
       <div className="musicContainer__sidebar">
         <Sidebar />
       </div>
-    </div >
+    </div>
   )
 }

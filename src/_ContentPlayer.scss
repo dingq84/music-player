@@ -1,19 +1,121 @@
 .musicContainer__content--player {
   position: relative;
 
-  & img {
+  & > img {
     position: absolute;
     top: 50%;
+    cursor: pointer;
+  }
+
+  &--picture {
+    position: absolute;
+    top: 29px;
+    width: 40px;
+    height: 40px;
+    left: 78px;
+
+    & img {
+      width: 100%;
+    }
+  }
+
+  &--name {
+    position: absolute;
+    top: 25px;
+    height: 28px;
+    left: 137px;
+    font-size: 20px;
+  }
+
+  &--singer {
+    position: absolute;
+    top: 53px;
+    left: 137px;
+    font-size: 12px;
+  }
+
+  &--shuffle {
+    transform: translateY(-50%);
+    left: 490px;
+    width: 16px;
+    height: 16px;
+  }
+
+  &--pre {
+    left: 547px;
+    width: 24.61px;
+    height: 15px;
     transform: translateY(-50%);
   }
 
+  &--control {
+    left: 593px;
+    transform: translateY(-50%);
+    width: 54px;
+    height: 54px;
+  }
+
+  &--next {
+    left: 659.58px;
+    transform: rotate(180deg) translateY(50%);
+    width: 24.61px;
+    height: 15px;
+  }
+
+  &--repeat {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 725px;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 20px;
+
+    & span {
+      position: absolute;
+      left: 85%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      font-size: 5px;
+      text-align: center;
+      border-radius: 50%;
+      background-color: green;
+      z-index: 1;
+    }
+  }
+
   &--volume {
+    position: absolute;
+    top: 50%;
     left: 909px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+
+    & > span {
+      margin-left: 9px;
+      width: 100px;
+      height: 6px;
+      background-color: #fff;
+      border-radius: 100px;
+      position: relative;
+
+      & > span {
+        display: inline-block;
+        height: 6px;
+        background-color: #964a4d;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
   }
 
   &--heart {
     left: 1097px;
     width: 24px;
     height: 21.74px;
+    transform: translateY(-50%);
   }
 }
