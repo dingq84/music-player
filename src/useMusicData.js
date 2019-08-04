@@ -7,7 +7,7 @@ import repeatSvg from './assets/images/ic_repeat_24px.svg';
 import shuffleSvg from './assets/images/ic_shuffle_24px.svg';
 import playSvg from './assets/images/Component.svg';
 import pauseSvg from './assets/images/pause.svg';
-import nextSvg from './assets/images/Component 1.svg';
+import nextSvg from './assets/images/Component-1.svg';
 import volumeSvg from './assets/images/ic_volume_up_24px.svg';
 
 let int;
