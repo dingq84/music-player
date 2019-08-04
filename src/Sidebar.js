@@ -5,7 +5,7 @@ import music from './assets/images/ic_library_music_48px.svg';
 import archive from './assets/images/archive-2.svg';
 import zoom from './assets/images/zoom-2.svg';
 import setting from './assets/images/settings-gear-63.svg';
-import album from './assets/images/Ed_Sheeran_-_No._6_Collaborations_Project.png';
+import album from './assets/images/album.png';
 
 import './_Sidebar.scss';
 

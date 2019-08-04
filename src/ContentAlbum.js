@@ -2,7 +2,7 @@ import React from 'react';
 
 import heartPink from './assets/images/heart-2-pink.svg';
 import heart from './assets/images/heart-2.svg';
-import album from './assets/images/Ed_Sheeran_-_No._6_Collaborations_Project.png';
+import album from './assets/images/album.png';
 import './_ContentAlbum.scss';
 
 export default function ContentAlbum({ data, click }) {
