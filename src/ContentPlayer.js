@@ -1,7 +1,7 @@
 import React from 'react';
 
 import heart from './assets/images/heart-2.svg';
-import album from './assets/images/Ed_Sheeran_-_No._6_Collaborations_Project.png';
+import album from './assets/images/album.png';
 
 import './_ContentPlayer.scss';
 
