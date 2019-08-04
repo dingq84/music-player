@@ -1,5 +1,6 @@
 import React from 'react';
 
+import heartPink from './assets/images/heart-2-pink.svg';
 import heart from './assets/images/heart-2.svg';
 import album from './assets/images/Ed_Sheeran_-_No._6_Collaborations_Project.png';
 import './_ContentAlbum.scss';
@@ -15,7 +16,7 @@ export default function ContentAlbum({ data, click }) {
         <div className="musicContainer__content--album--title--text">
           <h6>2019</h6>
           <h1>No.6 Collaborations Project</h1>
-          <button onClick={click}>play</button>
+          <button onClick={click}>PLAY</button>
         </div>
         <img
           src={heart}
@@ -36,8 +37,8 @@ export default function ContentAlbum({ data, click }) {
             className="musicContainer__content--album--list--name--heart"
           >
             <img
-              src={heart}
-              alt="heart" />
+              src={heartPink}
+              alt="heartPink" />
           </span>
         </div>
         <div className="musicContainer__content--album--list--content">

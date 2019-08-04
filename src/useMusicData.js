@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+import musicTag from './assets/images/ic_music_note_24px.svg';
 import heart from './assets/images/heart-2.svg';
+import heartPink from './assets/images/heart-2-pink.svg';
 import repeatSvg from './assets/images/ic_repeat_24px.svg';
 import shuffleSvg from './assets/images/ic_shuffle_24px.svg';
 import playSvg from './assets/images/Component.svg';
@@ -8,20 +10,29 @@ import pauseSvg from './assets/images/pause.svg';
 import nextSvg from './assets/images/Component 1.svg';
 import volumeSvg from './assets/images/ic_volume_up_24px.svg';
 
+let int;
+
 export default function useMusicData() {
-  const [currentMusic, setCurrentMusic] = useState({ name: '', path: '' });
+  const [currentMusic, setCurrentMusic] = useState({ name: '', path: '', duration: '' });
+  const [currentTime, setCurrentTime] = useState(0);
+  const [musicSpec, setMusicSpec] = useState([]);
+  const [hearts, setHearts] = useState({});
   const [isPlay, setIsPlay] = useState(false);
   const [cycle, setCycle] = useState('none');
   const [isShuffle, setIsShuffle] = useState(false);
   const [volume, setVolume] = useState(50);
   const audio = useRef();
   useEffect(() => {
+    if (int)
+      clearTimeout(int);
+
     if (currentMusic.path !== '') {
       const playPromise = audio.current.play();
       if (playPromise !== undefined) {
         playPromise.catch(error => { console.log(error) });
       }
       setIsPlay(true);
+      // setCurrentTime(Math.floor(audio.current.currentTime));
     }
   }, [currentMusic]);
 
@@ -30,8 +41,8 @@ export default function useMusicData() {
       setVolume(e.offsetX);
       audio.current.volume = e.offsetX / 100;
     }
-    const span = document.querySelector('.musicContainer__content--player--volume--length');
 
+    const span = document.querySelector('.musicContainer__content--player--volume--length');
     span.addEventListener('mousedown', updateVolume, false);
 
     return () => {
@@ -39,9 +50,15 @@ export default function useMusicData() {
     }
   }, []);
 
+  useEffect(() => {
+    int = setTimeout(() => {
+      setCurrentTime(Math.ceil(audio.current.currentTime));
+    }, 1000);
+  }, [currentMusic, currentTime]);
+
   const importAll = r => {
     let sounds = {};
-    const soundsKey = r.keys().map((item, index) => {
+    const soundsKey = r.keys().map(item => {
       const newKey = item.replace('./', '').replace('.mp3');
       sounds[newKey] = r(item);
       return newKey;
@@ -53,37 +70,45 @@ export default function useMusicData() {
     importAll(require.context('./assets/sounds', false, /\.mp3/));
 
   const changeSong = key => {
+    const index = soundsKey.findIndex(k => k === key);
     setCurrentMusic({
-      name: key,
-      path: sounds[key]
+      name: musicSpec[index].name,
+      path: musicSpec[index].path,
+      duration: musicSpec[index].duration
     })
   }
 
   const preSong = () => {
     const index = soundsKey.findIndex(key => key === currentMusic.name);
+    console.log(index);
     if (index === 0)
       setCurrentMusic({
-        name: soundsKey[soundsKey.length - 1],
-        path: sounds[soundsKey[soundsKey.length - 1]]
+        name: musicSpec[soundsKey.length - 1].name,
+        path: musicSpec[soundsKey.length - 1].path,
+        duration: musicSpec[soundsKey.length - 1].duration
       })
     else
       setCurrentMusic({
-        name: soundsKey[index - 1],
-        path: sounds[soundsKey[index - 1]]
+        name: musicSpec[index - 1].name,
+        path: musicSpec[index - 1].path,
+        duration: musicSpec[index - 1].duration
       })
   }
 
   const nextSong = () => {
     const index = soundsKey.findIndex(key => key === currentMusic.name);
+    console.log(index);
     if (index + 1 === soundsKey.length)
       setCurrentMusic({
-        name: soundsKey[0],
-        path: sounds[soundsKey[0]]
+        name: musicSpec[0].name,
+        path: musicSpec[0].path,
+        duration: musicSpec[0].duration
       })
     else
       setCurrentMusic({
-        name: soundsKey[index + 1],
-        path: sounds[soundsKey[index + 1]]
+        name: musicSpec[index + 1].name,
+        path: musicSpec[index + 1].path,
+        duration: musicSpec[index + 1].duration
       })
   }
 
@@ -114,14 +139,16 @@ export default function useMusicData() {
         const newSoundsKey = shuffle(soundsKey);
         if (newSoundsKey[0] !== currentMusic.name)
           setCurrentMusic({
-            name: newSoundsKey[0],
-            path: sounds[newSoundsKey[0]]
+            name: musicSpec[0].name,
+            path: musicSpec[0].path,
+            duration: musicSpec[0].duration
           })
         else
           setCurrentMusic({
-            name: newSoundsKey[1],
-            path: sounds[newSoundsKey[1]]
-          });
+            name: musicSpec[1].name,
+            path: musicSpec[1].path,
+            duration: musicSpec[1].duration
+          })
       } else
         nextSong();
     } else if (cycle === 'song')
@@ -148,6 +175,13 @@ export default function useMusicData() {
     })
   }
 
+  const handleJumpProgress = e => {
+    const percent = e.clientX / e.target.offsetWidth;
+    const newCurrentTime = currentMusic.duration * percent;
+    audio.current.currentTime = newCurrentTime;
+    setCurrentTime(newCurrentTime);
+  }
+
   const playerDOM =
     <>
       <audio
@@ -156,6 +190,15 @@ export default function useMusicData() {
         ref={audio}
         onEnded={ended}
       ></audio>
+      <span className="musicContainer__content--player--currentTime">
+        {
+          (currentMusic.name !== '') ?
+            `${Math.floor(currentTime / 60)} :
+          ${(Math.round(currentTime % 60)).toString().length === 1 ?
+              '0' + Math.round(currentTime % 60) :
+              Math.round(currentTime % 60)}` : ''
+        }
+      </span>
       <img
         className="musicContainer__content--player--shuffle"
         src={shuffleSvg}
@@ -221,6 +264,17 @@ export default function useMusicData() {
           </span>
         </span>
       </div>
+      <span
+        className="musicContainer__content--player--duration"
+      >
+        {
+          (currentMusic.duration) ?
+            `${Math.floor(currentMusic.duration / 60)} :
+            ${(Math.round(currentMusic.duration % 60)).toString().length === 1 ?
+              '0' + Math.round(currentMusic.duration % 60) :
+              Math.round(currentMusic.duration % 60)}` : ''
+        }
+      </span>
     </>
 
   const musicDOM =
@@ -229,11 +283,15 @@ export default function useMusicData() {
         key={index}
         className="musicContainer__content--album--list--content--items"
       >
-        <span
+        <div
           className="musicContainer__content--album--list--content--items--number"
         >
-          {index + 1}
-        </span>
+          {
+            (currentMusic.name === key) ?
+              <img src={musicTag} alt="music" /> : ''
+          }
+          <span>{index + 1}</span>
+        </div>
         <span
           className="musicContainer__content--album--list--content--items--title"
           onClick={() => changeSong(key)}
@@ -243,18 +301,50 @@ export default function useMusicData() {
         <span
           className="musicContainer__content--album--list--content--items--length"
         >
-          length
+          <audio
+            src={sounds[key]}
+            key={key}
+            onLoadedMetadata={(e) => {
+              setMusicSpec([
+                ...musicSpec,
+                { name: key, path: sounds[key], duration: e.target.duration }
+              ])
+            }}
+          >
+          </audio>
+          {!musicSpec[index] ||
+            `${Math.floor(musicSpec[index].duration / 60)} :
+             ${(Math.round(musicSpec[index].duration % 60)).toString().length === 1 ?
+              '0' + Math.round(musicSpec[index].duration % 60) :
+              Math.round(musicSpec[index].duration % 60)}`}
         </span>
         <span
           className="musicContainer__content--album--list--content--items--lover"
+          onClick={() => setHearts({
+            ...hearts,
+            [key]: !hearts[key]
+          })}
         >
           {Math.pow(126 * (index + 1), 2)}
-          <img
-            src={heart}
-            alt="heart" />
+          {
+            (!hearts[key]) ?
+              <img
+                src={heart}
+                alt="heart" /> :
+              <img
+                src={heartPink}
+                alt="heartPink" />
+          }
         </span>
       </div>
     )
 
-  return [currentMusic, initialSong, playerDOM, musicDOM];
+  return [
+    currentMusic,
+    initialSong,
+    currentTime,
+    handleJumpProgress,
+    playerDOM,
+    musicDOM
+  ];
 }

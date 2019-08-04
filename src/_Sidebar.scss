@@ -21,6 +21,11 @@
     left: 50%;
     top: 50px;
     transform: translateX(-50%);
+
+    & img {
+      width: 100%;
+      border-radius: 50%;
+    }
   }
 
   &__home {

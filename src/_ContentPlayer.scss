@@ -7,6 +7,15 @@
     cursor: pointer;
   }
 
+  &--currentTime {
+    position: absolute;
+    top: 5px;
+    left: 24px;
+    // width: 21px;
+    height: 17px;
+    font-size: 12px;
+  }
+
   &--picture {
     position: absolute;
     top: 29px;
@@ -117,5 +126,12 @@
     width: 24px;
     height: 21.74px;
     transform: translateY(-50%);
+  }
+
+  &--duration {
+    position: absolute;
+    top: 5px;
+    left: 1143px;
+    font-size: 12px;
   }
 }

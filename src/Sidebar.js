@@ -5,6 +5,7 @@ import music from './assets/images/ic_library_music_48px.svg';
 import archive from './assets/images/archive-2.svg';
 import zoom from './assets/images/zoom-2.svg';
 import setting from './assets/images/settings-gear-63.svg';
+import album from './assets/images/Ed_Sheeran_-_No._6_Collaborations_Project.png';
 
 import './_Sidebar.scss';
 
@@ -13,7 +14,7 @@ export default function Sidebar() {
   return (
     <>
       <div className="musicContainer__sidebar__picture">
-
+        <img src={album} alt="album" />
       </div>
       <img
         className="musicContainer__sidebar__home"
